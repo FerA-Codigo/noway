@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
+import { Container } from 'react-bootstrap';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -10,9 +11,9 @@ type StaticPropsParams ={
 const articulo = ({nombre}:any)=> {
 
   return (
-    <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}>
+    <Container>
       <div><h1>{nombre}</h1></div>
-    </main>
+    </Container>
   )
 }
 
