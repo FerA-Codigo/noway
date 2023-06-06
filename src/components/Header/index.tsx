@@ -1,14 +1,22 @@
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import Image from 'next/image';
 
 const Header = () =>{
   
     return (
-      <Navbar bg="light" expand="lg" className="sticky-top">
+      <Navbar expand="lg" className="sticky-top navbar-menu">
       <Container>
-        <Navbar.Brand href="/">MetroNews</Navbar.Brand>
+        <Navbar.Brand href="/" style={{paddingBottom:'0px'}}>
+        <Image
+          src="/img/noway_title.png"
+          width={270}
+          height={80}
+          alt="Picture of the author"
+        />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-auto" >
             <Nav.Link href="/">Inicio</Nav.Link>
             <Nav.Link href="/videogames">Videogames</Nav.Link>
             <Nav.Link href="/cine">Cine</Nav.Link>
@@ -25,7 +33,7 @@ const Header = () =>{
               </NavDropdown.Item>
             </NavDropdown> */}
           </Nav>
-          <Navbar.Text>Aca va el Tiempo</Navbar.Text>
+          <Navbar.Text><p>Aca va el Tiempo</p></Navbar.Text>
         </Navbar.Collapse>
       </Container>
     </Navbar>
