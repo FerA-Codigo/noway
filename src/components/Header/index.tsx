@@ -1,5 +1,6 @@
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import Image from 'next/image';
+import Location from "./location";
 
 const Header = () =>{
   
@@ -33,7 +34,7 @@ const Header = () =>{
               </NavDropdown.Item>
             </NavDropdown> */}
           </Nav>
-          <Navbar.Text><p>Aca va el Tiempo</p></Navbar.Text>
+          <Navbar.Text><Location/></Navbar.Text>
         </Navbar.Collapse>
       </Container>
     </Navbar>
