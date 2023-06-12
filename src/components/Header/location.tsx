@@ -29,9 +29,9 @@ export default function Location() {
     return(
         <Row>
             <Col md = {3}>  
-                <Image src={respuesta.info?.icono} width={64} height={64} alt={respuesta.info?.estado} />
+                <Image src={respuesta.info?.icono} width={64} height={64} decoding= "async" alt={respuesta.info?.estado} />
             </Col>
-            <Col md = {9} className="mt-3">
+            <Col md = {9} className="mt-2">
                 <p>{respuesta.info?.temperatura}  {respuesta.info?.ubicacion}</p>
             </Col>
       </Row>
