@@ -10,6 +10,7 @@ export default function Location() {
             // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
             navigator.geolocation.getCurrentPosition(({ coords }) => {
                 const { latitude, longitude } = coords;
+                
                 fetch("/api/weather",{
                     method: "POST",
                     headers: {
@@ -21,6 +22,8 @@ export default function Location() {
                 .then( data =>{
                     setRespuesta(data)
                 })
+
+            
             })
             
         }
@@ -37,3 +40,4 @@ export default function Location() {
       </Row>
     )
 }
+
