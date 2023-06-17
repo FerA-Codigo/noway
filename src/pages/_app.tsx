@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect } from 'react';
 import Layout from '@metronews/components/Layout';
 
+
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(()=>{
     require("bootstrap/dist/js/bootstrap.bundle.min.js");
@@ -11,7 +12,8 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <main>
       <Layout>
-        <Component {...pageProps} />
+      <Component {...pageProps} />
+       
       </Layout>
     </main>
   )
