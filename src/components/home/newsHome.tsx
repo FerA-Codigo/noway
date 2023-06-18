@@ -1,14 +1,19 @@
 import { Col, Container, Row } from "react-bootstrap";
 import styles from '@metronews/styles/NewsHome.module.css';
+import {useRouter} from 'next/router';
+import ReChrt from "@metronews/utils/reemplazarCaracteres";
 
 
 const NewsHome = ({ data }:any) => {
+
+    const router = useRouter();
+
     return (
         <>
         <div className={styles.fondoTitulares}>
         <Container className={styles.contenedorTitulares}>
         <Row>
-            <Col md={9} className={`d-none d-md-block d-lg-block`}>
+            <Col md={9} className={`d-none d-md-block d-lg-block ${styles.news}`} onClick={()=>router.push(`/articulo/${ReChrt(data[0].title)}?id=0`)}>
                 <div className={styles.titular} style={{backgroundImage:`url('${data[0].image}')`}}>
                 <div className={styles.overlay}>
                         <div className={styles.texto}><h3>{data[0].title}</h3></div>
@@ -17,9 +22,9 @@ const NewsHome = ({ data }:any) => {
             </Col>
             <Col md={3} sm={12}>
                 <Row>
-                    <Col md={12} className={`d-md-none`}><div className={styles.subTitular} style={{backgroundImage:`url('${data[0].image}')`}}></div><div className={styles.subText}><h5>{data[0].title}</h5></div><hr className={`d-md-none`}/></Col>
-                    <Col md={12}><div className={styles.subTitular} style={{backgroundImage:`url('${data[1].image}')`}}></div><div className={styles.subText}><h5>{data[1].title}</h5></div><hr className={`d-md-none`}/></Col>
-                    <Col md={12}><div className={styles.subTitular} style={{backgroundImage:`url('${data[2].image}')`}}></div><div className={styles.subText}><h5>{data[2].title}</h5></div><hr className={`d-md-none`}/></Col>
+                    <Col md={12} className={`d-md-none ${styles.news}`} onClick={()=>router.push(`/articulo/${ReChrt(data[0].title)}?id=0`)}><div className={styles.subTitular} style={{backgroundImage:`url('${data[0].image}')`}}></div><div className={styles.subText}><h5>{data[0].title}</h5></div><hr className={`d-md-none`}/></Col>
+                    <Col md={12} className={styles.news} onClick={()=>router.push(`/articulo/ReChrt(data[1].title)?id=1`)}><div className={styles.subTitular} style={{backgroundImage:`url('${data[1].image}')`}}></div><div className={styles.subText}><h5>{data[1].title}</h5></div><hr className={`d-md-none`}/></Col>
+                    <Col md={12} className={styles.news} onClick={()=>router.push(`/articulo/${ReChrt(data[2].title)}?id=2`)}><div className={styles.subTitular} style={{backgroundImage:`url('${data[2].image}')`}}></div><div className={styles.subText}><h5>{data[2].title}</h5></div><hr className={`d-md-none`}/></Col>
                 </Row>
             </Col>
            
@@ -30,7 +35,7 @@ const NewsHome = ({ data }:any) => {
         <Col md={12}><hr/></Col>    
         <Row>
         {data.slice(3,9).map((item:any, index:any) => (
-        <Col md={4}  sm={12} key={index}><div className={styles.nota} style={{backgroundImage:`url('${item.image}')`}}></div><div className={styles.subNota}><h5>{item.title}</h5></div><hr className={`d-md-none`}/></Col>
+        <Col md={4}  sm={12} className={styles.news} key={index} onClick={()=>router.push(`/articulo/${ReChrt(item.title)}?id=${index+3}`)}><div className={styles.nota} style={{backgroundImage:`url('${item.image}')`}}></div><div className={styles.subNota}><h5>{item.title}</h5></div><hr className={`d-md-none`}/></Col>
     
         ))}
         </Row>

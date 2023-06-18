@@ -68,6 +68,10 @@
     font-size:18px;
 }
 
+.news:hover {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 1398px) {
     .titular{
         padding-bottom: 60%; /* Proporción de la imagen */
