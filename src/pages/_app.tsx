@@ -3,7 +3,15 @@ import type { AppProps } from 'next/app'
 import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect } from 'react';
 import Layout from '@metronews/components/Layout';
-import Context from '@metronews/store/newsContext'
+import Context from '@metronews/store/newsContext';
+import { Roboto } from 'next/font/google';
+
+const roboto = Roboto({
+  weight: ['300', '500', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -12,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
 },[])
   return (
     <Context>
-      <main>
+      <main className={roboto.className}>
         <Layout>
             <Component {...pageProps} />
         </Layout>
