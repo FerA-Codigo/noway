@@ -2,50 +2,60 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 
-// interface RespuestaData {
-//     info?: {
-//       temperatura: string;
-//       icono: any;
-//       estado: any;
-//       ubicacion: string;
-//     };
-//   }
 
-  type RespuestaData = {
+
+ type RespuestaData = {
     info?: any;
-  }  
+  } 
 
+  
+  type Coordinates = {
+    latitude: number;
+    longitude: number;
+  }; 
+
+  const FETCH_INTERVAL = 20 * 60 * 1000; 
+  
 export default function Location() {
     const [respuesta, setRespuesta] = useState<RespuestaData>();
 
-    useEffect(() => {
-        if('geolocation' in navigator) {
-            // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
-            navigator.geolocation.getCurrentPosition(({ coords }) => {
-                const { latitude, longitude } = coords;
 
-                console.log(latitude);
-                console.log(longitude);
-                
-                fetch("/api/weather",{
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({latitud:latitude, longitud:longitude}),
-                })
-                .then(res => res.json())
-                .then( data =>{
-                    setRespuesta(data)
-                    
-                })
-
-
-            
-            })
-            
+    const fetchData = async () => {
+      if ('geolocation' in navigator) {
+        try {
+          const position = await new Promise<GeolocationPosition>((resolve, reject) =>
+            navigator.geolocation.getCurrentPosition(resolve, reject)
+          );
+          const { latitude, longitude } = position.coords;
+  
+          const response = await fetch("/api/weather", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ latitud: latitude, longitud: longitude }),
+          });
+  
+          const data = await response.json();
+          setRespuesta(data);
+          console.log (respuesta)
+        } catch (error) {
+          console.error("Error al obtener la geolocalización:", error);
         }
+      }
+    };
+  
+   
+    useEffect(() => {
+      fetchData(); 
+      console.log(respuesta)
+      const interval = setInterval(fetchData, FETCH_INTERVAL);
+  
+      return () => {
+        clearInterval(interval);
+      };
     }, []);
+
 
     const renderRespuesta = () => {
         if (respuesta?.info) {

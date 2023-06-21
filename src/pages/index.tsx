@@ -1,9 +1,5 @@
-import { News } from "@metronews/types";
 import fetcherNews from "@metronews/utils/fetcherNews";
 import NewsHome from '@metronews/components/home/newsHome';
-import { Container } from 'react-bootstrap';
-import { useContext, useEffect } from 'react';
-import { NewsData } from '@metronews/store/newsContext';
 import NewsVideogame from "@metronews/components/home/newsVideogame";
 
 type HomeProps ={
@@ -15,11 +11,11 @@ type HomeProps ={
 
 export default function Home({jsonNews, jsonVideogames }:HomeProps){
 
-  const { newsData, setNewsData } = useContext<any>(NewsData);
+//   const { newsData, setNewsData } = useContext<any>(NewsData);
 
-  useEffect(() => {
-    setNewsData(jsonNews.articles);
-    })
+//   useEffect(() => {
+//     setNewsData(jsonNews.articles);
+//     })
 
   return (
   <>  
