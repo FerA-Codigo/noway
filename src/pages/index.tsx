@@ -4,31 +4,99 @@ import NewsHome from '@metronews/components/home/newsHome';
 import { Container } from 'react-bootstrap';
 import { useContext, useEffect } from 'react';
 import { NewsData } from '@metronews/store/newsContext';
+import NewsVideogame from "@metronews/components/home/newsVideogame";
 
 type HomeProps ={
-    jsonNews: News[]; 
+    jsonNews: any; 
+    jsonVideogames: any;
 };
 
-export default function Home({jsonNews}:HomeProps){
 
-  const { newsData, setNewsData } = useContext(NewsData);
+
+export default function Home({jsonNews, jsonVideogames }:HomeProps){
+
+  const { newsData, setNewsData } = useContext<any>(NewsData);
 
   useEffect(() => {
     setNewsData(jsonNews.articles);
     })
 
-  if ('errors' in jsonNews) {
-    return <Container className={`mt-5 mb-5 text-center`}><h3>Agotada la cuota de consulta de noticias por hoy. te esperamos mañana!</h3></Container>
-  }else{
-    return <NewsHome data={jsonNews.articles}/>
-  }    
+  return (
+  <>  
+  <NewsHome data={jsonNews}/>
+  <NewsVideogame data={jsonVideogames}/>
+  </>
+  )
+     
 }
 
 export async function getServerSideProps() {
     try {
-      // const jsonNews = await fetcherNews();
-      const jsonNews = {"totalArticles":37398,"articles":[{"title":"Truco para tener el WhatsApp de tu pareja en tu celular Android","description":"De esta manera podrás tener el WhatsApp de tu pareja en tu celular Android sin desinstalar el tuyo","content":"WhatsApp sigue incluyendo una serie de elementos a su aplicación de mensajería rápida. En la actualidad ya cuenta con una serie de detalles que pocos han explorado, como es el caso de la posibilidad de abrir la cuenta de tu pareja en tu celular Andro... [2232 chars]","url":"https://depor.com/depor-play/tecnologia/whatsapp-como-tener-los-chats-de-tu-pareja-en-tu-celular-truco-2023-espiar-nnda-nnni-noticia/","image":"https://depor.com/resizer/zDrf_oWZQtfAolKEFH-Ra_1W0rQ=/980x528/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/L3KRUENSSJH3JBZRWW77JP7LJU.jpg","publishedAt":"2023-06-18T19:55:00Z","source":{"name":"Diario Depor","url":"https://depor.com"}},{"title":"Descarga hoy juegos de pago gratis para Android y iOS, 18 de junio de 2023","description":"Hay tantas ofertas y variedad que no podrás resistirte. Puedes guardarlas para siempre en tu biblioteca si descargas a tiempo desde tu tienda favorita.","content":"Solo es cuestión de tener paciencia y saber dónde buscar. En la App Store de Apple y Google Play de Android, hallarás numerosos videojuegos de calidad de forma gratuita. No obstante, es sabido que las aplicaciones de pago suelen ofrecer una mejor exp... [3773 chars]","url":"https://depor.com/depor-play/videojuegos/juegos-de-pago-gratis-para-android-y-ios-lista-completa-para-hoy-18-de-junio-de-2023-ruby-square-puzzle-trojan-war-premium-gravity-force-bagatur-chess-engine-epic-wars-heroes-premium-animal-class-shock-clock-arcade-smart-othello-cat-botz-my-city-cops-and-robbers-mexico-espana-mx-noticia/","image":"https://depor.com/resizer/bBwL5_lNRe_f-iBXRkpQOwvq1-A=/980x528/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/V7B4YAJPVZB3FAOOSCHKP7VNXQ.jpg","publishedAt":"2023-06-18T19:43:38Z","source":{"name":"Diario Depor","url":"https://depor.com"}},{"title":"WhatsApp: por qué no debes usar el emoji del corazón negro","description":"No es amor. Si alguien te mandó el corazón negro, quizá se haya equivocado en WhatsApp","content":"WhatsApp ya tiene más de 720 emojis . Cada uno de ellos tiene una forma bastante particular y hasta colores que representan la realidad. Sin embargo, algunos usuarios siempre tienen problemas con los corazones de diversas tonalidades, pues no todos s... [1348 chars]","url":"https://depor.com/depor-play/tecnologia/whatsapp-por-que-no-debes-usar-el-emoji-del-corazon-negro-meaning-black-heart-nnda-nnni-noticia/","image":"https://depor.com/resizer/5i1KAT3ot1kv38zSulfdAjKkkHE=/980x528/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/MV3ZEIWICNHH3I76TVF6JIMK7Q.jpg","publishedAt":"2023-06-18T18:55:00Z","source":{"name":"Diario Depor","url":"https://depor.com"}},{"title":"¿Es posible ser millonario invirtiendo 100 euros en Bitcoin?","description":"Bitcoin por fin está mostrando signos de recuperación, pero sigue teniendo dificultades para superar el nivel de 25.600 dólares.","content":"Bitcoin por fin está mostrando signos de recuperación, pero sigue teniendo dificultades para superar el nivel de 25.600 dólares.\nEn medio de esta lucha, han surgido varios factores dignos de mención que han influido en la trayectoria de Bitcoin.\nEl p... [4912 chars]","url":"https://es.beincrypto.com/convertirse-millonario-invirtiendo-100-euros-bitcoin/","image":"https://s32679.pcdn.co/wp-content/uploads/2023/06/imagen_2023-06-17_134217308-850x574.png","publishedAt":"2023-06-18T18:33:00Z","source":{"name":"BeInCrypto Español","url":"https://es.beincrypto.com"}},{"title":"Desarrolladora de Genshin Impact deja en el polvo a gigantes de la industria","description":"miHoYo (conocido fuera de China como HoYoVerse) y sus aclamados títulos como Genshin Impact y Honkai Impact 3rd.","content":"En un logro impresionante, la compañía miHoYo ha superado las ganancias de reconocidas desarrolladoras de videojuegos como Capcom, Ubisoft, Konami, Square Enix, Activision Blizzard y Electronic Arts durante el año 2022. Según un informe financiero so... [2421 chars]","url":"https://somoskudasai.com/noticias/videojuegos/desarrolladora-de-genshin-impact-deja-en-el-polvo-a-gigantes-de-la-industria/","image":"https://somoskudasai.com/wp-content/uploads/2023/06/portada_genshin-impact-234.jpg","publishedAt":"2023-06-18T16:07:16Z","source":{"name":"Kudasai","url":"https://somoskudasai.com"}},{"title":"Las mejores aplicaciones de Android y iOS para conducir como un profesional","description":"¿No sabes dónde cargar gasolina al mejor precio o cuánto demorarás en llegar según el tráfico? Eso ya es parte del pasado con ayuda de tu smartphone.","content":"Todos los conductores deberían saber que usar el smartphone al conducir es peligroso. Los sistemas integrados de los nuevos vehículos hacen posible que puedas compartir información en tiempo real desde el dispositivo y así hacer que tu viaje sea el m... [3516 chars]","url":"https://depor.com/depor-play/tecnologia/android-ios-las-mejores-aplicaciones-para-conducir-como-un-profesional-mexico-espana-mx-noticia/","image":"https://depor.com/resizer/fj1EXdAtizzIpqYsdgruMmDSiCQ=/980x528/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/J3A36FLOBZCFBB72MHQWV6U24A.jpg","publishedAt":"2023-06-18T15:53:29Z","source":{"name":"Diario Depor","url":"https://depor.com"}},{"title":"Binance emite orden contra \"entidad estafadora\" que usa su nombre en Nigeria","description":"Changpeng Zhao, CEO de Binance, aclaró que Binance Nigeria Limited no está relacionada con él ni con su empresa y emitieron una orden en su contra.","content":"Hechos clave: Las autoridades nigerianas dijeron que las actividades de Binance Nigeria Limited eran ilegales.\nBinance Nigeria Limited no está registrado ante los organismos reguladores de este país.\nBinance ha emitido una orden de cese y desistimien... [1731 chars]","url":"https://www.criptonoticias.com/judicial/binance-orden-entidad-estafadora-nigeria/","image":"https://www.criptonoticias.com/wp-content/uploads/2023/06/Diseno-sin-titulo.jpg","publishedAt":"2023-06-18T14:42:23Z","source":{"name":"CriptoNoticias","url":"https://www.criptonoticias.com"}},{"title":"El curso GRATIS de GOOGLE para aprender una de las herramientas del futuro desde tu casa","description":"Las capacitacitaciones que ofrece Google son certificadas. Sirven para aprender nuevas cosas y para agrandar el currículum vitae.","content":"Las capacitaciones de Google suelen ser muy completas y certificadas, pero en el último tiempo no son muy frecuentadas por los usuarios. En esta oportunidad, la empresa estadounidense brinda un nuevo curso gratuito para conocer los aspectos básicos d... [1848 chars]","url":"https://la100.cienradios.com/sociedad/el-curso-gratis-de-google-para-aprender-una-de-las-herramientas-del-futuro-desde-tu-casa/","image":"https://radiomitre-la100-prod.cdn.arcpublishing.com/resizer/eXQIhIpBAo_-iUhZ567tnHMla6s=/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/radiomitre/TKR3SKTHB5A5RJCEUFCJ4A5NEM.png","publishedAt":"2023-06-18T13:00:42Z","source":{"name":"La 100","url":"https://la100.cienradios.com"}},{"title":"Crean un robot autónomo capaz de erradicar insectos invasores","description":"Este nuevo robot lleva un pequeño tractor eléctrico, un brazo robótico y visión artificial, y con ello se puede mover por campos de cultivo e incluso bosques.","content":"La tecnología que pone en liza este robot para erradicar uno de los insectos invasores que pueden llegar a nuestras cosechas.\nLa agricultura es tremendamente importante para cualquier estado, y para ello deben cuidarse hasta los últimos detalles, per... [1921 chars]","url":"https://computerhoy.com/ciencia/crean-robot-autonomo-capaz-erradicar-insectos-invasores-1262326","image":"https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2023/06/tartanpest-3061348.jpg?tf=1200x","publishedAt":"2023-06-18T12:15:10Z","source":{"name":"Computer Hoy","url":"https://computerhoy.com"}},{"title":"Mercedes-Benz enfrenta caída en ventas de camiones con oferta de mayor tecnología","description":"La compañía indicó que espera cerrar el 2023 con un crecimiento del 15% en ventas de camiones.","content":"“Venimos de años no necesariamente comparables. Después de la pandemia, hemos enfrentado situaciones complejas, ya que hemos tenido una demanda importante que no hemos podido atender”, precisa José Antonio Heredia, gerente de la división de Camiones ... [3470 chars]","url":"https://gestion.pe/economia/empresas/autos-mercedes-benz-enfrenta-caida-en-ventas-de-camiones-con-oferta-de-mayor-tecnologia-noticia/","image":"https://gestion.pe/resizer/cF_Nqdx4qeIno8o_obgCUbBx9kk=/980x528/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/ZB45JRLLMNDENH2P2AOQQAYMEI.jpg","publishedAt":"2023-06-18T10:00:00Z","source":{"name":"Diario Gestión","url":"https://gestion.pe"}}]}
-   return{ props: { jsonNews } }
+      // const jsonNews = await fetcherNews('noticias');
+     const jsonVideogames = await fetcherNews('videogames');
+     const jsonNews = [
+    {
+        "id": 1,
+        "title": "TikTok se gasta 1.000 millones de dólares en tarjetas gráficas de NVIDIA: todo para entrenar su modelo de IA",
+        "image": "https://i.blogs.es/801c7c/nvidia/840_560.jpeg"
+    },
+    {
+        "id": 2,
+        "title": "Descubierta una fórmula para que los paneles solares puedan generar más energía eléctrica",
+        "image": "https://www.hibridosyelectricos.com/uploads/s1/47/11/50/dos-investigaciones-distintas-han-acabado-en-el-mismo-punto-foto-vecstock-via-freepik_6_489x275.jpeg"
+    },
+    {
+        "id": 3,
+        "title": "‘Armas no letales’: la nueva ley del Congreso “autoriza” equipamiento que ya es utilizado por serenos de Lima",
+        "image": "https://elcomercio.pe/resizer/bRuh_uGiz921fTPIHceuuSjbQi8=/980x528/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/Z54P5RJ2L5CWROHUL4CKDZKG6U.jpg"
+    },
+    {
+        "id": 4,
+        "title": "características, precio y ficha técnica",
+        "image": "https://i.blogs.es/06ee72/r-dam_1483011/840_560.jpeg"
+    },
+    {
+        "id": 5,
+        "title": "Intel tiene un plan para volver a liderar la industria de los chips. Le va a costar un auténtico dineral",
+        "image": "https://i.blogs.es/3ad53d/intel-ap/840_560.jpeg"
+    },
+    {
+        "id": 6,
+        "title": "WhatsApp: enviar GIFs con reproducción automática",
+        "image": "https://depor.com/resizer/ivcOYmN07_vTbbooibBNfX9hegM=/980x528/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/QIEWAKEYTJDOBBWSPSOC5ISODU.jpg"
+    },
+    {
+        "id": 7,
+        "title": "Cómo usar emojis de iPhone en celular Android",
+        "image": "https://depor.com/resizer/r6_HLEyjTfXrt7mEIpbv5QrQvEU=/980x528/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/WY6HGHNJF5FXTNCFGV6FYB74PI.jpg"
+    },
+    {
+        "id": 8,
+        "title": "¿Cuánto costará Bitcoin (BTC) en 2030?",
+        "image": "https://s32679.pcdn.co/wp-content/uploads/2023/03/bic_Bulls_bullish_2.jpg.webp"
+    },
+    {
+        "id": 9,
+        "title": "Voicebox es el nuevo sistema de IA generativa de voz de Meta. Y es tan bueno que no vas a poder usarlo",
+        "image": "https://i.blogs.es/5839c7/captura-de-pantalla-2023-06-19-a-las-8.46.15/840_560.jpeg"
+    },
+    {
+        "id": 10,
+        "title": "iPhone: funciones que desaparecieron con llegada de iOS 17",
+        "image": "https://depor.com/resizer/FaFGdTiRyesDYPAoAkIrfV-2ERM=/980x528/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/R5JSECOTCZCJ7N7TRXHCYQPCYU.jpg"
+    },
+    {
+        "id": 11,
+        "title": "Miles de empleados utilizan la IA en su trabajo. Cada vez más no quieren que sus jefes lo descubran",
+        "image": "https://i.blogs.es/68b7a1/uso-de-inteligencia-artificial/840_560.jpeg"
+    },
+    {
+        "id": 12,
+        "title": "“Son solo bromas”. Elon Musk se defiende de una demanda de 235.000 millones de euros de la forma más inesperada posible",
+        "image": "https://i.blogs.es/9a3a70/dogecoin-elon-musk-criptomonedas/840_560.jpeg"
+    }
+  ]
+   return{ props: { jsonNews, jsonVideogames } }
     } catch (error) {
       console.error(error);
     }

@@ -1,12 +1,17 @@
 .fondoTitulares{
     display:block;
-    background-color:rgb(44, 4, 48);
+    background-color:#32117d;
     width: 100%;
 }
 .contenedorTitulares{
     padding-top: 15px;
     padding-bottom: 15px;
 }
+.contenedorVideogames{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
 .titular{
     position: relative;
     width: 100%;
@@ -43,6 +48,25 @@
     color:#2e2d2d;
     margin:10px 10px 0px 0px;
 }
+
+.contenedorVideogames .subNota{
+    margin:10px 10px 0px 0px;
+}
+.contenedorVideogames .subNota h5{
+    color:#fff;
+    font-weight: 300;
+}
+.contenedorVideogames h3{
+    color:#fff;
+    font-weight: 300;
+}
+.contenedorVideogames p{
+    color:#fff;
+    font-weight: 300;
+}
+.contenedorVideogames p:hover {
+    cursor: pointer;
+}
 .overlay {
     position: absolute;
     bottom: 0;
@@ -70,6 +94,14 @@
 
 .news:hover {
     cursor: pointer;
+}
+
+.button{
+    color: blue;
+}
+
+.button:disabled{
+    color: rgba(168, 168, 168, 0.932);
 }
 
 @media screen and (max-width: 1398px) {

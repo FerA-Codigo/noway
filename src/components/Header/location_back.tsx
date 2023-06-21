@@ -36,8 +36,7 @@ export default function Location() {
                 })
                 .then(res => res.json())
                 .then( data =>{
-                    setRespuesta(data)
-                    
+                    setRespuesta(data.info)
                 })
 
 
@@ -47,27 +46,22 @@ export default function Location() {
         }
     }, []);
 
-    const renderRespuesta = () => {
-        if (respuesta?.info) {
-          return (
-            <Row>
-              <Col md={3}>
-                <Image src={respuesta.info.icono} width={64} height={64} alt={respuesta.info.estado} />
-              </Col>
-              <Col md={9} className="mt-2">
-                <p>{respuesta.info.temperatura} {respuesta.info.ubicacion}</p>
-              </Col>
-            </Row>
-          );
+    useEffect(() => {
+        if(respuesta) {
+            
+               
         }
-        return <p></p>;
-      };
-   
+    }, [respuesta]);
 
     return(
-        <div>
-        {renderRespuesta()}
-      </div>
+        <Row>
+            <Col md = {3}>  
+                <Image src={respuesta?.info?.icono} width={64} height={64} alt={respuesta?.info?.estado} />
+            </Col>
+            <Col md = {9} className="mt-2">
+                <p>{respuesta?.info?.temperatura}  {respuesta?.info?.ubicacion}</p>
+            </Col>
+      </Row>
     )
 }
 

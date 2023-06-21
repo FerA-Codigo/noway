@@ -7,10 +7,10 @@ import styles from '@metronews/styles/Articulo.module.css';
 import Link from "next/link";
 
 type HomeProps ={
-  jsonVideogames: News[];
+  jsonNoticias: News[];
 };
 
-const ListadoArticulos = ({jsonVideogames }:HomeProps) => {
+const ListadoArticulos = ({jsonNoticias }:HomeProps) => {
   return (
     <Container>
       <Row>
@@ -18,11 +18,11 @@ const ListadoArticulos = ({jsonVideogames }:HomeProps) => {
       <Col md={12} className={`mt-3 ${styles.breadcrumb}`}><p><Link className={styles.link} href="/">Inicio</Link>/</p></Col>
       </Row>  
       <Col md={12}>
-      <h1 className={`mb-2 ${styles.header}`} style={{color:'darkblue'}}>Videogames</h1>
+      <h1 className={`mb-2 ${styles.header}`} style={{color:'darkblue'}}>Últimas noticias</h1>
       <hr/>
       </Col>
       <Row>
-      <Col md={9}><Paginacion resultados={jsonVideogames} elementosPorPagina={6} seccion='videogames' /></Col>
+      <Col md={9}><Paginacion resultados={jsonNoticias} elementosPorPagina={6} seccion='noticias' /></Col>
       <Col md={3} className={styles.advertising}><PublicidadLateral/></Col>
       </Row>
       <Col md={12}><hr/></Col>  
@@ -35,10 +35,9 @@ export default ListadoArticulos;
 
 export async function getServerSideProps() {
   try {
-    // const jsonNews = await fetcherNews('noticias');
-   const jsonVideogames = await fetcherNews('videogames');
+    const jsonNoticias = await fetcherNews('noticias');
 
- return{ props: { jsonVideogames } }
+ return{ props: { jsonNoticias } }
   } catch (error) {
     console.error(error);
   }

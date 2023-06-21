@@ -1,12 +1,22 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Router } from 'next/router';
 import { Col, Row } from 'react-bootstrap';
 
+const publicidades = [{
+    name:"Codigo Facilito - NextJS",
+    image: "publicidad_nextjs.jpg",
+    url: "https://codigofacilito.com/"
+  },
+  {
+    name:"PayFun - Pagos Corporativos",
+    image: "publicidad_payfun.jpg",
+    url: "https://payfun.com.ar/"
+  }
+]
 
 
 
-const PublicidadLateral = ({publicidades}:any) => {
+const PublicidadLateral = () => {
    return(
         <Row>
             <Col md={12}><h6>Publicidad</h6></Col>

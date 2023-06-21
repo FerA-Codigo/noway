@@ -17,14 +17,14 @@
 }
 
 body {
-  background-color: #2B345F !important;
+  background-color: #1f0a4e !important;
 }
 main {
   background-color: white !important;
 }
 .navbar-menu{
   padding-bottom:0px !important;
-  background-color: #31417F !important;
+  background-color: #0159df !important;
   color:#fff !important;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
@@ -38,12 +38,12 @@ Navbar.Text{
   color:#fff !important;
 }
 .footer{
-  background-color: #31417F !important;
+  background-color: #311178 !important;
   color: #fff;
  
 }
 .bottom-text{
-  background-color: #2B345F !important;
+  background-color: #1f0a4e !important;
   padding:7px 0px 0px 0px !important;
   margin: 0px -11px 0px -11px !important;
   text-align: center;
