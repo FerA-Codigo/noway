@@ -1,8 +1,5 @@
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import { Col, Container, Row } from 'react-bootstrap'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function ErrorPage() {
   return (

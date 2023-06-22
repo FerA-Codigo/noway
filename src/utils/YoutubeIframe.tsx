@@ -7,9 +7,8 @@ interface IProps {
 
 const VideoIframe: React.FC<IProps> = (props) => {
   const { videoId, autoPlay } = props;
-  const videoURL = `https://www.youtube.com/embed/${videoId}${
-    autoPlay ? "?autoplay=1" : ""
-  }`;
+  const videoURL = `https://www.youtube.com/embed/${videoId}${autoPlay ? "?autoplay=1" : ""
+    }`;
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const defaultHeight = 495;
   const [videoHeight, setVideoHeight] = useState<number>(
@@ -21,10 +20,10 @@ const VideoIframe: React.FC<IProps> = (props) => {
       window.innerWidth > 990
         ? 1.0
         : window.innerWidth > 522
-        ? 1.2
-        : window.innerWidth > 400
-        ? 1.45
-        : 1.85;
+          ? 1.2
+          : window.innerWidth > 400
+            ? 1.45
+            : 1.85;
     const height = iframeRef.current
       ? iframeRef.current.offsetWidth * 0.5625
       : defaultHeight;
@@ -37,10 +36,10 @@ const VideoIframe: React.FC<IProps> = (props) => {
       window.innerWidth > 990
         ? 1.0
         : window.innerWidth > 522
-        ? 1.2
-        : window.innerWidth > 400
-        ? 1.45
-        : 1.85;
+          ? 1.2
+          : window.innerWidth > 400
+            ? 1.45
+            : 1.85;
     const height = iframeRef.current
       ? iframeRef.current.offsetWidth * 0.5625
       : defaultHeight;
@@ -53,7 +52,7 @@ const VideoIframe: React.FC<IProps> = (props) => {
   return (
     <iframe
       ref={iframeRef}
-    //   title={title}
+      //   title={title}
       width="100%"
       height={`${videoHeight}px`}
       src={videoURL}

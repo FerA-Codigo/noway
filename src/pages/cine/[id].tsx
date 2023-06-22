@@ -10,18 +10,18 @@ type StaticPropsParams = {
   params: any;
 }
 
-const Nota = ({articulo}:any)=> {
+const Nota = ({ articulo }: any) => {
   if (!articulo.title) {
-    return <ErrorPage/>;
+    return <ErrorPage />;
   }
   return (
     <>
-    <Container>
-      <Row>
-      <Col md={12} className={`mt-3 ${styles.breadcrumb}`}><p> <Link className={styles.link} href="/">Inicio</Link> / <Link className={styles.link} href="/cine">Cine</Link></p></Col>
-      </Row>  
-    </Container>  
-    <Pelicula data={articulo}/>
+      <Container>
+        <Row>
+          <Col md={12} className={`mt-3 ${styles.breadcrumb}`}><p> <Link className={styles.link} href="/">Inicio</Link> / <Link className={styles.link} href="/cine">Cine</Link></p></Col>
+        </Row>
+      </Container>
+      <Pelicula data={articulo} />
     </>
   )
 }
@@ -29,14 +29,13 @@ const Nota = ({articulo}:any)=> {
 
 export default Nota;
 
-export async function getServerSideProps({params}:StaticPropsParams) {
+export async function getServerSideProps({ params }: StaticPropsParams) {
 
-  const {id} = params;
+  const { id } = params;
 
   try {
     const articulo = await fetcherNews(`pelicula/${id}`);
-
- return{ props: { articulo } }
+    return { props: { articulo } }
   } catch (error) {
     console.error(error);
   }
