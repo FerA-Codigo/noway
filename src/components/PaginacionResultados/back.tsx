@@ -2,17 +2,9 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import styles from '@metronews/styles/NewsHome.module.css';
-import { NewsData } from '@metronews/store/newsContext';
-import { useContext } from "react";
-
 
 const Paginacion = ({ resultados, elementosPorPagina,seccion }:any) => {
-
-  const newsContext = useContext(NewsData);
-
-
-
-  const [paginaActual, setPaginaActual] = useState(newsContext?.page || 1);
+  const [paginaActual, setPaginaActual] = useState(1);
   const indiceInicial = (paginaActual - 1) * elementosPorPagina;
   const indiceFinal = indiceInicial + elementosPorPagina;
   const resultadosPaginados = resultados.slice(indiceInicial, indiceFinal);
@@ -20,14 +12,12 @@ const Paginacion = ({ resultados, elementosPorPagina,seccion }:any) => {
   const avanzarPagina = () => {
     if (paginaActual < obtenerTotalPaginas()) {
       setPaginaActual(paginaActual + 1);
-      newsContext?.setPage(paginaActual + 1);
     }
   };
 
   const retrocederPagina = () => {
     if (paginaActual > 1) {
       setPaginaActual(paginaActual - 1);
-      newsContext?.setPage(paginaActual - 1);
     }
   };
 

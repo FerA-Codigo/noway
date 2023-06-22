@@ -2,17 +2,17 @@ import { createContext, useState } from "react";
 import { News } from "@metronews/types";
 
 type NewsContextProps = {
-    weather: {} | null;
-    setWeather: (data: {} | null) => void;
+    page: number | null;
+    setPage: (data: number | null) => void;
   }
 
 export const NewsData = createContext<NewsContextProps | null>(null);
 
 function Context({ children }:{children: React.ReactNode}) {
-    const [weather, setWeather] = useState<any | null>({});
+    const [page, setPage] = useState<any | null>();
   
     return (
-      <NewsData.Provider value={{ weather, setWeather }}>
+      <NewsData.Provider value={{ page, setPage }}>
         {children}
       </NewsData.Provider>
     );

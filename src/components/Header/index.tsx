@@ -1,8 +1,19 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import Image from 'next/image';
 import Location from "./location";
+import { NewsData } from '@metronews/store/newsContext';
+import { useContext } from "react";
 
 const Header = () =>{
+
+  const newsContext = useContext(NewsData);
+
+  const handleClick = () => {
+    
+    if (newsContext) {
+      newsContext.setPage(1);
+    }
+  };
   
     return (
       <Navbar expand="lg" className="sticky-top navbar-menu">
@@ -19,9 +30,10 @@ const Header = () =>{
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto" >
             <Nav.Link href="/">Inicio</Nav.Link>
-            <Nav.Link href="/noticias">Noticias</Nav.Link>
-            <Nav.Link href="/videogames">Videogames</Nav.Link>
-            <Nav.Link href="/cine">Cine</Nav.Link>
+            <Nav.Link href="/noticias" onClick={handleClick}>Noticias</Nav.Link>
+            <Nav.Link href="/videogames"  onClick={handleClick}>Videogames</Nav.Link>
+            <Nav.Link href="/cine"  onClick={handleClick}>Cine</Nav.Link>
+            
           </Nav>
           <Navbar.Text><Location/></Navbar.Text>
         </Navbar.Collapse>
