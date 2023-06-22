@@ -3,6 +3,7 @@ import styles from '@metronews/styles/Articulo.module.css';
 import Link from 'next/link';
 import fetcherNews from '@metronews/utils/fetcherNews';
 import Articulo from '@metronews/components/Articulo';
+import ErrorPage from '../404';
 
 
 type StaticPropsParams = {
@@ -10,6 +11,9 @@ type StaticPropsParams = {
 }
 
 const Nota = ({articulo}:any)=> {
+  if (!articulo.title) {
+    return <ErrorPage/>;
+  }
   return (
     <>
     <Container>
@@ -30,7 +34,7 @@ export async function getServerSideProps({params}:StaticPropsParams) {
   const {id} = params;
 
   try {
-    const articulo = await fetcherNews(`noticia/${id}`);
+    const articulo = await fetcherNews(`videogame/${id}`);
 
  return{ props: { articulo } }
   } catch (error) {

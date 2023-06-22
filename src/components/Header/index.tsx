@@ -22,7 +22,6 @@ const Header = () =>{
             <Nav.Link href="/noticias">Noticias</Nav.Link>
             <Nav.Link href="/videogames">Videogames</Nav.Link>
             <Nav.Link href="/cine">Cine</Nav.Link>
-            <Nav.Link href="/libros">Libros</Nav.Link>
           </Nav>
           <Navbar.Text><Location/></Navbar.Text>
         </Navbar.Collapse>

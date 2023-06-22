@@ -4,7 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function ErrorPage() {
   return (
     <Container className={`mt-5 mb-5 d-flex flex-column align-items-center`}>
       <Row>

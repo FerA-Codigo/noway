@@ -5,7 +5,6 @@ import styles from '@metronews/styles/NewsHome.module.css';
 
 const Paginacion = ({ resultados, elementosPorPagina,seccion }:any) => {
   const [paginaActual, setPaginaActual] = useState(1);
-
   const indiceInicial = (paginaActual - 1) * elementosPorPagina;
   const indiceFinal = indiceInicial + elementosPorPagina;
   const resultadosPaginados = resultados.slice(indiceInicial, indiceFinal);
@@ -31,9 +30,17 @@ const Paginacion = ({ resultados, elementosPorPagina,seccion }:any) => {
 
         <Col md={12} key={index} >
           <Row className={`d-flex align-items-center`}>
-            
+
+            {seccion === 'cine'?
+            <Col md={4} className={styles.news} onClick={()=>router.push(`/${seccion}/${resultado.id}`)}><div className={styles.nota} style={{backgroundImage:`url('https://image.tmdb.org/t/p/w500/${resultado.image}')`}}></div></Col>
+            :
             <Col md={4} className={styles.news} onClick={()=>router.push(`/${seccion}/${resultado.id}`)}><div className={styles.nota} style={{backgroundImage:`url('${resultado.image}')`}}></div></Col>
-            <Col md={8}><h3 className={styles.news} onClick={()=>router.push(`/${seccion}/${resultado.id}`)}>{resultado.title}</h3></Col>
+            }
+        
+        <Col md={8}>
+          <h3 className={styles.news} onClick={()=>router.push(`/${seccion}/${resultado.id}`)}>{resultado.title}</h3>
+          {resultado.description?<Col md={12} className={`mb-3 ${styles.subheadline}`}><p>{`${resultado.description}`}</p></Col>:null}
+        </Col>
           </Row>
           <hr/>  
         </Col>

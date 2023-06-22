@@ -33,7 +33,7 @@ const NewsHome = ({ data }:any) => {
         <Container>
         <Col md={12}><hr/></Col>    
         <Row>
-        {data.slice(3).map((item:any, index:any) => (
+        {data.slice(3,9).map((item:any, index:any) => (
         <Col md={4}  sm={12} className={styles.news} key={index} onClick={()=>router.push(`/noticias/${item.id}`)}><div className={styles.nota} style={{backgroundImage:`url('${item.image}')`}}></div><div className={styles.subNota}><h5>{item.title}</h5></div><hr className={`d-md-none`}/></Col>
     
         ))}

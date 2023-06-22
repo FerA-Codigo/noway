@@ -23,7 +23,6 @@ const NewsVideogame = ({ data }:any) => {
         
         </Container>
         </div>
-        <Col md={12} className={`d-none d-md-block d-lg-block`}><hr/></Col>
         </>
     )
   };
