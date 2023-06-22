@@ -12,7 +12,7 @@ type HomeProps = {
 
 
 export default function Home({ jsonNews, jsonVideogames, jsonCine }: HomeProps) {
-
+  
   return (
     <>
       <NewsHome data={jsonNews} />
